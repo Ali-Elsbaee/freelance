@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity</title>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            min-width: 930px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .row {
+            width: 100%;
+            display: block;
+        }
+
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col-1 {width: 8.33333333%;}
+        .col-2 {width: 16.66666666%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33333333%;}
+        .col-5 {width: 41.66666666%}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33333333%;}
+        .col-8 {width: 66.66666666%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33333333%;}
+        .col-11 {width: 91.66666666%;}
+        .col-12 {width: 100%;}
+
+        *[class^="col-"] {
+            padding: 0 3px;
+            display: inline-block;
+            float: left;
+        }
+
+        .activity-container {
+            min-width: 760px;
+            margin: 10px auto;
+        }
+
+        .activity-header {
+            height: 30px;
+            background: #e0e2e4;
+            padding: 0 10px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .activity-header h1 {
+            font-size: 14px;
+            color: #333;
+            line-height: 30px;
+            font-weight: 500;
+        }
+
+        .activity-boby {
+            background: #eeeeee;
+            padding: 5px;
+        }
+
+        ul {
+            height: auto;
+            position: relative;
+        }
+
+        li {
+            list-style-type: none;
+            position: absolute;
+            background: #ffffff;
+            top: 30px;
+            width: 100%;
+            border-radius: 3px;
+        }
+
+        #upcoming::after {
+            content: 'Upcoming';
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: #f9f9f9;
+            color: #999999;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            cursor: pointer;
+        }
+
+        #recent::after {
+            content: 'Recent';
+            position: absolute;
+            bottom: 100%;
+            left: 95px;
+            background: #f9f9f9;
+            color: #999999;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            cursor: pointer;
+        }
+
+        #staff::after {
+            content: 'Staff';
+            position: absolute;
+            bottom: 100%;
+            left: 168px;
+            background: #f9f9f9;
+            color: #999999;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+            cursor: pointer;
+        }
+
+        .active-tab::after {
+            color: #000000 !important;
+            background: #ffffff !important;
+            font-weight: 500;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 10px;
+        }
+
+        .day-header {
+            margin: 5px 0;
+            background: #eeeeee;
+            border-radius: 3px;
+            padding: 5px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .day-row {
+            background: #F9F9F9;
+            border-radius: 2px;
+            margin: 5px 0;
+        }
+
+        .day-row label {
+            color: #fb7c00;
+            font-size: 11px;
+            font-weight: 600;
+            display: table-cell;
+            height: 24px;
+            vertical-align: middle;
+        }
+
+        .day-row span {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 2px;
+        }
+
+        .day-row span i {
+            line-height: 24px;
+            font-size: 18px;
+            padding: 0 5px;
+        }
+
+        .day-row input[type='radio'] {
+            width: 16px;
+            height: 16px;
+            margin: 4px;
+        }
+
+        .red-btn {
+            background: #e00;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .green-btn {
+            background: #6cb415;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .yellow-btn {
+            background: #dac51d;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .details {
+            border: 1px solid #e0e2e4;
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        thead {
+            font-size: 12px;
+            color: #555;
+            font-style: italic;
+            background: #eeeeee;
+        }
+
+        th {
+            padding: 5px;
+        }
+
+        tbody {
+            font-size: 13px;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px #ccc solid;
+            background: #f9f9f9;
+        }
+
+        tbody a {
+            color: #3f72cf;
+        }
+
+        tbody tr {
+            border-left: 5px solid;
+        }
+
+        tbody tr:first-child {
+            padding-left: 10px !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="activity-container">
+            <div class="activity-header">
+                <h1>Activity</h1>
+            </div>
+            <div class="activity-boby">
+                <ul id="tabs-container">
+                    <li id="upcoming" class="active-tab" onclick="change_tab(this);">
+                        <div class="tab-content" style="display: block;">
+                            <div class="row" style="color: #777; font-size: 12px;">
+                                <div class="col-2">
+                                    Status
+                                </div>
+                                <div class="col-4">
+                                    Project Title
+                                </div>
+                                <div class="col-6">
+                                    Task/Event name
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 day-header">
+                                    Overdue
+                                </div>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="red-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><i class="ion ion-clipboard"></i></span>
+                                    <label>ABC Services 200 Car filout</label>
+                                </div>
+                                <div class="col-6">
+                                    <span>--</span>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="red-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><i class="ion ion-clipboard"></i></span>
+                                    <label>Website for ABC media</label>
+                                </div>
+                                <div class="col-6">
+                                    <span>--</span>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="red-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Task Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><input type="radio"></span>
+                                    <label>PRJ-00209-EBS 04-Branding Development</label>
+                                </div>
+                                <div class="col-6">
+                                    <label>Get Approval And Make Changes</label>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Item Description</th>
+                                            <th>Ordered Qty</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-left-color: #dac51d">
+                                            <td>SHW Spray Primer (5gal)</td>
+                                            <td><a href="#">50.00 of 100.00</a></td>
+                                            <td>$20.00</td>
+                                            <td>$1,000.00</td>
+                                            <td>PO#3</td>
+                                        </tr>
+                                        <tr style="border-left-color: #cf0e0b">
+                                            <td>SHW Spray Primer (5gal)</td>
+                                            <td><a href="#">50.00 of 100.00</a></td>
+                                            <td>$20.00</td>
+                                            <td>$1,000.00</td>
+                                            <td>PO#3</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="red-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Task Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><input type="radio"></span>
+                                    <label>PRJ-00236-123 07-123lets Go Social Media campaign</label>
+                                </div>
+                                <div class="col-5">
+                                    <label>Organise food 123lets Go Social Media campaign</label>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-12 day-header" style="background: #cccccc;">
+                                    26 July <span style="color: #F9F9F9;">(today)</span>
+                                </div>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="green-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Start</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><i class="ion ion-clipboard"></i></span>
+                                    <label>ABC Services 200 Car filout</label>
+                                </div>
+                                <div class="col-6">
+                                    <span>--</span>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="green-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Start</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><i class="ion ion-clipboard"></i></span>
+                                    <label>Website for ABC media</label>
+                                </div>
+                                <div class="col-6">
+                                    <span>--</span>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="green-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Start</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><input type="radio"></span>
+                                    <label>PRJ-00209-EBS 04-Branding Development</label>
+                                </div>
+                                <div class="col-6">
+                                    <label>Get Approval And Make Changes</label>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="yellow-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Task Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><input type="radio"></span>
+                                    <label>PRJ-00236-123 07-123lets Go Social Media campaign</label>
+                                </div>
+                                <div class="col-5">
+                                    <label>Organise food 123lets Go Social Media campaign</label>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 day-header">
+                                    27 July (tomorrow)
+                                </div>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="green-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Start</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><i class="ion ion-clipboard"></i></span>
+                                    <label>ABC Services 200 Car filout</label>
+                                </div>
+                                <div class="col-6">
+                                    <span>--</span>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="yellow-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Task Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><input type="radio"></span>
+                                    <label>PRJ-00236-123 07-123lets Go Social Media campaign</label>
+                                </div>
+                                <div class="col-5">
+                                    <label>Organise food 123lets Go Social Media campaign</label>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 day-header">
+                                    29 July (in 3 days)
+                                </div>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="green-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Project Start</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><i class="ion ion-clipboard"></i></span>
+                                    <label>ABC Services 200 Car filout</label>
+                                </div>
+                                <div class="col-6">
+                                    <span>--</span>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row day-row">
+                                <div class="col-2">
+                                    <a href="#" class="yellow-btn" onclick="toggle(this);"><i class="ion ion-plus" style="padding-right: 5px;"></i>Task Due</a>
+                                </div>
+                                <div class="col-4">
+                                    <span><input type="radio"></span>
+                                    <label>PRJ-00236-123 07-123lets Go Social Media campaign</label>
+                                </div>
+                                <div class="col-5">
+                                    <label>Organise food 123lets Go Social Media campaign</label>
+                                </div>
+                            </div>
+
+                            <div class="row details">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Item Description</th>
+                                        <th>Ordered Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr style="border-left-color: #dac51d">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    <tr style="border-left-color: #cf0e0b">
+                                        <td>SHW Spray Primer (5gal)</td>
+                                        <td><a href="#">50.00 of 100.00</a></td>
+                                        <td>$20.00</td>
+                                        <td>$1,000.00</td>
+                                        <td>PO#3</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li id="recent" onclick="change_tab(this);">
+                        <div class="tab-content">
+                            Recent <br> Recent <br> Recent
+                            <button>kjhk</button>
+                        </div>
+                    </li>
+                    <li id="staff" onclick="change_tab(this);">
+                        <div class="tab-content">
+                            Staff Staff Staff
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function set_ul_height(li) {
+            document.getElementById('tabs-container').style.height = (li.clientHeight + 30) + 'px';
+        }
+
+        function change_tab(li) {
+            var siblings = li.parentNode.childNodes;
+            for (var i = 0; i < siblings.length; i++) {
+                if (siblings[i].nodeName == 'LI' && siblings[i] != li) {
+                    siblings[i].childNodes[1].style.display = 'none';
+                    siblings[i].className = "";
+                }
+            }
+            li.childNodes[1].style.display = 'block';
+            li.className = "active-tab";
+            set_ul_height(li);
+        }
+
+        function toggle(btn) {
+            var statue = btn.parentElement.parentElement.nextElementSibling;
+            console.log(statue.style.display);
+            if (statue.style.display == 'none' || statue.style.display == '') {
+                statue.style.display = 'block';
+            } else {
+                statue.style.display = 'none';
+            }
+        }
+
+        document.onload = set_ul_height(document.getElementById('upcoming'));
+    </script>
+
+</body>
+</html>

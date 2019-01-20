@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Costing</title>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+</head>
+
+<style>
+
+    * {
+        font-family: Verdana, sans-serif;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        min-width: 700px;
+        margin: auto;
+    }
+
+    .row {
+        width: 100%;
+        display: block;
+    }
+
+    .row::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .col-1 {width: 8.33333333%;}
+    .col-2 {width: 16.66666666%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33333333%;}
+    .col-5 {width: 41.66666666%}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33333333%;}
+    .col-8 {width: 66.66666666%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33333333%;}
+    .col-11 {width: 91.66666666%;}
+    .col-12 {width: 100%;}
+
+    *[class^="col-"] {
+        padding: 0 3px;
+        display: inline-block;
+        float: left;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .side-bar {
+        width: 110px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        text-align: center;
+        position: fixed;
+        left: 0;
+        top: 0;
+        background: #ffffff;
+        z-index: 50;
+        height: 100%;
+        border-right: 1px solid #dddddd;
+    }
+
+    .side-bar a {
+        display: inline-block;
+        width: 85%;
+        border: #eee 1px solid;
+        border-radius: 5px;
+        padding: 5px;
+        text-align: center;
+        margin: 5px auto;
+        box-shadow: none;
+        transition: all 0.05s ease-in-out;
+    }
+
+    .side-bar a:hover {
+        border-color: #ddd;
+        box-shadow: 0 0 5px 0 #ccc;
+    }
+
+    .side-bar a i {
+        font-size: 32px;
+        color: #555;
+    }
+
+    .side-bar a p {
+        font-size: 12px;
+        color: #555;
+    }
+
+    .content {
+        width: 100%;
+        padding: 10px 10px 10px 120px;
+
+    }
+
+    .content h1 {
+        font-size: 14px;
+        color: #0a2e41;
+    }
+
+    .table-container {
+        border:1px #ccc solid;
+        margin-top: 5px;
+        border-radius: 3px;
+    }
+
+    table {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        border-collapse: collapse;
+    }
+
+    table thead th {
+        background: #dcebfb;
+        border-radius: 3px;
+        padding: 3px;
+        border: #fff 2px solid;
+    }
+
+    table tbody tr td {
+        border-bottom: 1px #ddd solid;
+        padding: 3px 0;
+        position: relative;
+    }
+
+    table tr:hover {
+        background: #f5f5f5;
+    }
+
+    table tbody ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        width: 100px;
+        right: 50%;
+        transform: translateX(50%);
+        top: 28px;
+        box-shadow: 0 0 3px 0;
+        background: #ffffff;
+        overflow: hidden;
+        z-index: 10;
+        border-radius: 3px;
+        height: 0px;
+        transition: all 0.1s ease-in-out;
+    }
+
+    table ul li {
+        padding: 5px;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+        color: #05486f;
+        list-style-type: none;
+    }
+
+    table ul li:hover {
+        background: #05486f;
+        color: #ffffff;
+    }
+
+    table ul li i {
+        margin-right: 5px;
+    }
+
+    .ion-android-menu {
+        padding: 3px 5px;
+        border-radius: 3px;
+        font-size: 14px;
+        cursor: pointer;
+        color: #497ac2;
+    }
+
+    .ion-android-menu:hover {
+        background: rgba(150,210,250,0.5);
+    }
+
+    select {
+        padding: 3px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+
+</style>
+
+<body>
+
+    <section>
+            <div class="side-bar">
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Budget Analysis</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Budget Analysis 2</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Budget Input</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Budget Projection</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Rebuild Cost</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>eCosting</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Help</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Search Reports</p>
+                </a>
+                <a href="#">
+                    <i class="ion ion-clipboard"></i>
+                    <p>Search Reports</p>
+                </a>
+            </div>
+            <div class="row" style="background: #f5f5f5; padding: 10px 5px 10px 120px;"><h1 style="font-size: 16px;">My drive is costing : Project List</h1></div>
+            <div class="content">
+                <div class="row" style="padding: 3px;">
+                        <label style="font-size: 13px;" for="proj-list">Project list</label>
+                        <select name="proj-list" id="proj-list" style="width: 150px">
+                            <option value="a" selected>Approved</option>
+                        </select>
+                        <label style="font-size: 13px; margin-left: 15px;" for="proj-list">Show</label>
+                        <select name="proj-list" id="proj-list">
+                            <option value="a" selected>All</option>
+                        </select>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Project Code - Description</th>
+                            <th>Latest Budget<br>(By Part)</th>
+                            <th>Latest Budget<br>(By Cost)</th>
+                            <th>Commit</th>
+                            <th>Incur</th>
+                            <th>paid</th>
+                            <th>View<br>Analysis</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>10101010 - Kencana - Test Tracker 3</td>
+                            <td>0.00</td>
+                            <td>300.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>100.00</td>
+                            <td>
+                                <i class="ion ion-android-menu" onclick="drop_action_menu(this);"></i>
+                                <ul>
+                                    <li><a title="print"><i class="ion ion-printer"></i>Action 1</a></li>
+                                    <li><a title="search"><i class="ion ion-search"></i>Action 2</a></li>
+                                    <li><a title="cart"><i class="ion ion-android-cart"></i>Action 3</a></li>
+                                    <li><a title="file"><i class="ion ion-android-document"></i>Action 4</a></li>
+                                    <li><a title="draft"><i class="ion ion-android-drafts"></i>Action 5</a></li>
+                                    <li><a title="list"><i class="ion ion-android-list"></i>Action 6</a></li>
+                                    <li><a title="delete"><i class="ion ion-android-delete"></i>Action 7</a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </section>
+
+    <script>
+
+        function set_side_bar_height() {
+            document.getElementsByClassName('side-bar')[0].style.height = window.innerHeight + 'px';
+        }
+
+        function drop_action_menu(icon) {
+            close_menus(icon)
+            var menu =  icon.nextElementSibling;
+            (menu.style.height == '0px' || menu.style.height == '') ? menu.style.height = '175px' : menu.style.height =
+                    '0px';
+        }
+
+        function close_menus(icon) {
+            var menu = (icon) ? icon.nextElementSibling : '';
+            var menus = document.getElementsByTagName('ul');
+            for (var i = 0; i < menus.length; i++) {
+                if (menus[i] != menu) menus[i].style.height = '0px';
+            }
+        }
+
+        document.body.addEventListener('click', function (e) {
+            var target = e.target;
+            if (target.tagName != 'I') close_menus();
+        });
+
+        document.onload = set_side_bar_height();
+    </script>
+
+</body>
+</html>

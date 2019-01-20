@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plate Cutting Process</title>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<style>
+    /*Global Rules*/
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: Verdana, sans-serif;
+        box-sizing: border-box;
+    }
+
+    html {
+        min-width: 930px;
+    }
+
+    .container {
+        max-width: 1170px;
+        margin: auto;
+    }
+
+    .row {
+        width: 100%;
+        display: block;
+    }
+
+    .row::after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+    .col-1 {width: 8.33333333%;}
+    .col-2 {width: 16.66666666%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33333333%;}
+    .col-5 {width: 41.66666666%}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33333333%;}
+    .col-8 {width: 66.66666666%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33333333%;}
+    .col-11 {width: 91.66666666%;}
+    .col-12 {width: 100%;}
+
+    *[class^="col-"] {
+        padding: 0 3px;
+        display: inline-block;
+        float: left;
+    }
+
+    input,
+    select,
+    textarea {
+        padding: 0 5px;
+        width: 100%;
+        height: 24px;
+        border-radius: 3px;
+        border: #ccc solid 1px;
+        outline: none;
+    }
+
+    input[type='radio'],
+    input[type='checkbox'] {
+        height: 15px;
+        width: 15px;
+    }
+
+    input[type='text']:focus,
+    input[type='date']:focus,
+    input[type='time']:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #2aa4cd;
+        box-shadow: 0 0 3px 0 #2aa4cd;
+    }
+
+    textarea {
+        max-width: 100%;
+    }
+
+    label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #777;
+        white-space: nowrap;
+    }
+
+    /*HEADER*/
+    header {
+        height: 50px;
+        background: #0f0f0f;
+    }
+
+    header h1 {
+        color: #fff;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 50px;
+        margin-left: 20px;
+    }
+
+    /*BASIC INPUTS*/
+    .basic-inputs {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #eee;
+        padding: 10px;
+        box-shadow: 0 0 3px 0 #ddd;
+    }
+
+    .section .container {
+        background: #fbfbfb;
+        border: #ccc 1px solid;
+    }
+
+    .section-header {
+        height: 30px;
+        background-color: #738fa5;
+        padding: 0 15px;
+        cursor: pointer;
+    }
+
+    .section-header:hover {
+        background: #516373;
+    }
+
+    .section-header h2 {
+        font-size: 16px;
+        line-height: 30px;
+        color: #f9f9f9;
+        float: left;
+    }
+
+    .section-header i {
+        font-size: 16px;
+        color: #ffffff;
+        line-height: 30px;
+        float: right;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+    }
+
+    .section-header:hover i {
+        transform: scale(1.2);
+    }
+
+    .section-body {
+        height: 0px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .section-body .inner-wrapper {
+        margin: 10px;
+        padding: 10px;
+        background: #eee;
+        border-radius: 5px;
+        border: #cccccc 1px solid;
+    }
+
+    .section-body .inner-wrapper i {
+        background: #555;
+        color: #ffffff;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 3px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .section-body .inner-wrapper i:hover {
+        background: #666666;
+    }
+
+    input[type='submit'] {
+        color: #ffffff;
+        background: #2f3a43;
+        border-radius: 3px;
+    }
+</style>
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1>PLATE CUTTING PROCESS 1</h1>
+        </div>
+    </header>
+
+    <form>
+        <section class="container" style="padding: 10px;">
+           <div class="basic-inputs">
+               <div class="row" style="margin: 5px 0;">
+                   <div class="col-3">
+                       <div class="row">
+                           <div class="col-4">
+                               <label for="ref_no">Ref No:</label>
+                           </div>
+                           <div class="col-4">
+                               <input type="text" id="ref_no">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-4">
+                       <div class="row">
+                           <div class="col-5">
+                               <label for="product_date">Production Date:</label>
+                           </div>
+                           <div class="col-6">
+                               <input type="date" id="product_date">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-5">
+                       <div class="row">
+                           <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="start_time" style="padding-left: 10px;">Start Time:</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="time" id="start_time">
+                                    </div>
+                                </div>
+                           </div>
+                           <div class="col-6">
+                               <div class="row">
+                                   <div class="col-6">
+                                       <label for="end_time"  style="padding-left: 15px;">End Time:</label>
+                                   </div>
+                                   <div class="col-6">
+                                       <input type="time" id="end_time">
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="row" style="margin: 5px 0;">
+                   <div class="col-3">
+                       <div class="row">
+                           <div class="col-4">
+                               <label for="remark">Remark:</label>
+                           </div>
+                           <div class="col-8" style="padding-right: 20px;">
+                               <textarea name="remark" id="remark" cols="30" rows="10"></textarea>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-4">
+                       <div class="row">
+                           <div class="col-5">
+                               <label>Entry Date:</label>
+                           </div>
+                           <div class="col-6">
+                               <label>31-8-2016</label>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-5">
+                       <div class="row">
+                           <div class="col-6">
+                               <div class="row">
+                                   <div class="col-6">
+                                       <label style="padding-left: 10px;">Entry By:</label>
+                                   </div>
+                                   <div class="col-6">
+                                       <label>0</label>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+    </section>
+
+        <section>
+        <div class="container" style="padding: 0 20px 20px 0;">
+            <div class="row">
+                <div class="col-1" style="float: right;">
+                    <input type="submit" value="Submit">
+                </div>
+                <div class="col-1" style="float: right;">
+                    <input type="reset" value="Cancel">
+                </div>
+            </div>
+        </div>
+    </section>
+    </form>
+
+    <section class="section">
+        <form action="">
+            <div class="container">
+                <div class="section-header" onclick="toggle('general-settings',this.childNodes[3])">
+                    <h2>General Settings</h2>
+                    <i class="ion ion-arrow-down-b" onclick="toggle('general-settings',this);"></i>
+                    <div style="clear: both;"></div>
+                </div>
+                <div class="section-body" id="general-settings">
+                    <div class="inner-wrapper">
+                        <div class="row" style="margin: 5px 0;">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label for="item">Item:</label>
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="text" id="item">
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="text" title="">
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="ion ion-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label for="qty" style="padding-left: 5px;">Qty:</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" id="qty" title="">
+                                    </div>
+                                    <div class="col-5">
+                                        <select name="select" id="select" title="">
+                                            <option value="0" selected disabled>Select</option>
+                                            <option value="1">option 1</option>
+                                            <option value="2">option 2</option>
+                                            <option value="3">option 3</option>
+                                            <option value="4">option 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-4" style="padding-left: 20px;">
+                                        <label for="weight">Weight:</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" id="weight">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5px 0;">
+                            <div class="col-1">
+                                <label for="section-remark">Remark:</label>
+                            </div>
+                            <div class="col-4">
+                                <textarea name="section-remark" id="section-remark" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5px 0;">
+                            <div class="col-1">
+                                <input type="submit" value="Add">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="section">
+        <form action="">
+            <div class="container">
+                <div class="section-header" onclick="toggle('credentials',this.childNodes[3])">
+                    <h2>Brightpearl API Credentials</h2>
+                    <i class="ion ion-arrow-down-b" onclick="toggle('credentials',this);"></i>
+                    <div style="clear: both;"></div>
+                </div>
+                <div class="section-body" id="credentials">
+                    <div class="inner-wrapper">
+                        <div class="row" style="margin: 5px 0;">
+                            <div class="col-4">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label>Item:</label>
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="text" title="">
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="text" title="">
+                                    </div>
+                                    <div class="col-1">
+                                        <i class="ion ion-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-2">
+                                        <label for="qty" style="padding-left: 5px;">Qty:</label>
+                                    </div>
+                                    <div class="col-5">
+                                        <input type="text" title="">
+                                    </div>
+                                    <div class="col-5">
+                                        <select name="select" title="">
+                                            <option value="0" selected disabled>Select</option>
+                                            <option value="1">option 1</option>
+                                            <option value="2">option 2</option>
+                                            <option value="3">option 3</option>
+                                            <option value="4">option 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="row">
+                                    <div class="col-4" style="padding-left: 20px;">
+                                        <label>Weight:</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" title="" id="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5px 0;">
+                            <div class="col-1">
+                                <label for="section-remark">Remark:</label>
+                            </div>
+                            <div class="col-4">
+                                <textarea name="section-remark" title="" cols="30" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="row" style="margin: 5px 0;">
+                            <div class="col-1">
+                                <input type="submit" value="Add">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+
+    <script>
+        function toggle(section, arrow) {
+            var target = document.getElementById(section);
+            if (target.style.height === '0px' || target.style.height === '') {
+                target.style.height = 'auto';
+                arrow.className = 'ion ion-arrow-up-b';
+            } else {
+                target.style.height = '0px';
+                arrow.className = 'ion ion-arrow-down-b';
+            }
+        }
+
+        document.onload=console.log(window.innerWidth);
+    </script>
+
+</body>
+</html>
