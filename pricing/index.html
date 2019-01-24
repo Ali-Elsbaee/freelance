@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PRICING | Final Flat</title>
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <style>
+
+        /*Global Rules*/
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            min-width: 1100px;
+            overflow: scroll;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .row {
+            width: 100%;
+            display: block;
+            margin: 3px 0;
+        }
+
+        .row::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .col-1 {width: 8.33333333%;}
+        .col-2 {width: 16.66666666%;}
+        .col-3 {width: 25%;}
+        .col-4 {width: 33.33333333%;}
+        .col-5 {width: 41.66666666%}
+        .col-6 {width: 50%;}
+        .col-7 {width: 58.33333333%;}
+        .col-8 {width: 66.66666666%;}
+        .col-9 {width: 75%;}
+        .col-10 {width: 83.33333333%;}
+        .col-11 {width: 91.66666666%;}
+        .col-12 {width: 100%;}
+
+        *[class^="col-"] {
+            padding: 0 3px;
+            display: inline-block;
+            float: left;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 0 5px;
+            width: 100%;
+            height: 24px;
+            border-radius: 3px;
+            border: #ccc solid 1px;
+            outline: none;
+        }
+
+        input[type='radio'],
+        input[type='checkbox'] {
+            height: 15px;
+            width: 15px;
+            position: relative;
+            top: 3px;
+        }
+
+        input[type='text']:focus,
+        input[type='date']:focus,
+        input[type='time']:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #2aa4cd;
+            box-shadow: 0 0 3px 0 #2aa4cd;
+        }
+
+        textarea {
+            max-width: 100%;
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #777;
+            white-space: nowrap;
+        }
+
+        fieldset {
+            border: 1px #aaa solid;
+            border-radius: 3px;
+            padding: 5px;
+        }
+
+        legend {
+            padding: 3px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /*HEADER*/
+        header {
+            height: 50px;
+            background: #0f0f0f;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 50px;
+            margin-left: 20px;
+        }
+
+        /*BASIC INPUTS*/
+        .basic-inputs {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #eee;
+            padding: 10px;
+            box-shadow: 0 0 3px 0 #ddd;
+        }
+
+
+        input[type='submit'] {
+            color: #ffffff;
+            background: #4777bd;
+            border-radius: 3px;
+        }
+
+        .basic-info {
+            border: #ccc 1px solid;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+        }
+
+        thead {
+            font-size: 12px;
+            color: #2f3a43;
+        }
+
+        th {
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .blue-btn {
+            padding: 7px 20px;
+            color: #fff;
+            border-radius: 5px;
+            background: #5997ee;
+            font-size: 14px;
+            box-shadow: inset 0 -15px 15px 0 #4d82ce;
+        }
+
+        .part {
+            color: #082534;
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        .part:hover{
+            color: #13577a;;
+        }
+
+        i:not(i:first-of-type) {
+            background: #082534;
+            color: #eee;
+            text-align: center;
+            border-radius: 3px;
+            margin-left: -6px;
+            width: 24px;
+            height: 24px;
+            padding: 4px 5px;
+            transform: translateY(1px);
+            cursor: pointer;
+        }
+
+        iframe {
+            border: #ccc 1px solid;
+            border-radius: 3px;
+            width: 100%;
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1>PRICING | Final Flat</h1>
+        </div>
+    </header>
+
+    <section class="container" style="margin: 10px auto">
+       <div class="basic-inputs">
+            <div class="row">
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-5"><label>Item Description</label></div>
+                        <div class="col-7"><label style="font-weight: 500">: Argentina / Brazilian corn</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5"><label>Trade Confirmation No</label></div>
+                        <div class="col-7"><label style="font-weight: 500">: IMP160007 (temp)</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5"><label>Seller Name</label></div>
+                        <div class="col-7"><label style="font-weight: 500">: AAVANTI INDUSTRIES PTE LTD</label></div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="row">
+                        <div class="col-5"><label>Shipment Period</label></div>
+                        <div class="col-7"><label style="font-weight: 500">: 11-11-2011 - 11-11-2011</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5"><label>Shipment No</label></div>
+                        <div class="col-7"><label style="font-weight: 500">: </label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5"><label>Provisional Flat Price</label></div>
+                        <div class="col-7"><label style="font-weight: 500">: </label></div>
+                    </div>
+                </div>
+                <div class="col-3" style="float: right;">
+                    <div class="row">
+                        <div class="col-6"><label>Purchaser</label></div>
+                        <div class="col-6"><label style="font-weight: 500">: Shirley Chia</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"><label>Last Modify Date</label></div>
+                        <div class="col-6"><label style="font-weight: 500">: 02-9-2016</label></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6"><label>Last Modify By</label></div>
+                        <div class="col-6"><label style="font-weight: 500">: Shirley Chia</label></div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </section>
+
+    <section class="container">
+        <div class="basic-info">
+            <table>
+                <thead>
+                <tr>
+                    <th>PO NO</th>
+                    <th>Seller Contract</th>
+                    <th>Origin</th>
+                    <th>Destination Port</th>
+                    <th>Vessel Name</th>
+                    <th>Total BL Qty</th>
+                    <th>BL Data</th>
+                    <th>ETD</th>
+                    <th>ETA</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-8"><label>Total BL Qty</label></div>
+                <div class="col-4"><label>0.000</label></div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <a class="blue-btn" href="#">Provisional Price</a>
+            <a class="blue-btn" href="#">Internal Costing</a>
+            <a class="blue-btn" href="#">Price Difference</a>
+        </div>
+        <div class="row" style="margin-top: 10px; direction: rtl;">
+            <a class="blue-btn" href="#">Save</a>
+            <a class="blue-btn" href="#">Print</a>
+            <a class="blue-btn" href="#" style="background: #bbb; box-shadow: none;">Cancel</a>
+            <a class="blue-btn" href="#">Submit</a>
+        </div>
+    </section>
+
+    <section class="container">
+        <a class="part" onclick="toggle(this);">Part B: Back to Back sales details
+            <span><i style="transform: rotate(0deg); transition:all 0.1s;" class="ion ion-chevron-down"></i></span></a>
+    </section>
+
+    <section class="container" style="display: block;">
+        <div style="border: #aaa 1px solid; border-radius: 5px; padding: 5px; margin-top: 5px;">
+            <div class="row" style="text-align: center;">
+                <label for="trade-date">Trade Date :</label>
+                <input style="width: 8%;" type="text" id="trade-date">
+                <label for="type">Pricing Type :</label>
+                <select name="type" id="type" style="width: 10%;">
+                    <option value="flat&basis" selected>Flat & Basis</option>
+                </select>
+                <label for="buyer">Buyer :</label>
+                <input style="width: 7%;" type="text" id="buyer">
+                <i class="ion ion-plus"></i>
+                <label for="payment-term">Payment Term :</label>
+                <input style="width: 6%;" type="text" id="payment-term">
+                <i class="ion ion-plus"></i>
+                <label for="interest">Extended Payment Term Interest :</label>
+                <input style="width: 6%;" type="text" id="Interest">
+                <i class="ion ion-plus"></i>
+            </div>
+
+            <div class="row">
+                <div class="col-6" style="padding: 5px;">
+                    <fieldset>
+                        <legend>Flat Price Details</legend>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Selling Price:</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label>Selling Price is exclusive extended payment term interest</label>
+                                </div>
+                                <div class="row">
+                                    <input type="checkbox" id="checkbox2">
+                                    <label for="checkbox2">Tick if subject to intercompany mark up</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Qty:</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text">
+                                    </div>
+                                    <div class="col-6">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Pricing ref:</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="remark">Remark :</label>
+                        </div>
+                        <div class="col-8">
+                            <textarea name="" id="remark" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" value="Add">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6" style="padding: 5px;">
+                    <fieldset>
+                        <legend>Basis Price Details</legend>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Selling Price:</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text">
+                                    </div>
+                                    <div class="col-6">
+                                        <select>
+                                            <option selected disabled>Per short ton over CB</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label>Selling Price is exclusive extended payment term interest</label>
+                                </div>
+                                <div class="row">
+                                    <input type="checkbox" id="checkbox1">
+                                    <label for="checkbox1">Tick if subject to intercompany mark up</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Qty:</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <input type="text">
+                                    </div>
+                                    <div class="col-3">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label>@</label>
+                                        <input type="text" style="width: 78%;">
+                                        <label>lots</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Pricing ref:</label>
+                            </div>
+                            <div class="col-10">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <select>
+                                            <option selected disabled>Select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </div>
+        </div>
+
+        <iframe src="table.html" frameborder="1">
+
+        </iframe>
+
+    </section>
+
+    <script>
+        function toggle(link) {
+            var part = link.parentElement.nextElementSibling;
+            if (part.style.display == 'none' || part.style.display == '') {
+                part.style.display = 'block';
+                link.firstElementChild.firstElementChild.style.transform = 'rotate(180deg)';
+            } else {
+                part.style.display = 'none';
+                link.firstElementChild.firstElementChild.style.transform = 'rotate(0deg)'
+            }
+        }
+    </script>
+
+</body>
+</html>
